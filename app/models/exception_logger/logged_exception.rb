@@ -59,9 +59,9 @@ module ExceptionLogger
     def method
       line = request.split("\n")[0].gsub("* URL: ", " ")
       parts = line.split(" ")
-      if parts.size  = 1
+      if parts.size == 1
         "GET"
-      elsif parts.size  = 2
+      elsif parts.size == 2
         parts[0]
       else
         ""
@@ -71,9 +71,9 @@ module ExceptionLogger
     def url
       line = request.split("\n")[0].gsub("* URL: ", " ")
       parts = line.split(" ")
-      if parts.size  = 1
+      if parts.size == 1
         parts[0]
-      elsif parts.size  = 2
+      elsif parts.size == 2
         parts[1]
       else
         ""
