@@ -19,7 +19,6 @@
           <td>
             <div class="expclass"><%= link_to exception.name, {:action => "show", :id => exception}, :class => 'show_link' %></div>
             <span class="message"><%= h exception.method %></span>
-            &nbsp;
             <span class="message"><%= link_to exception.url.truncate(128), exception.url, target: "_blank" %></span>
             <br>
             <span class="message"><%= h exception.message %></span>
