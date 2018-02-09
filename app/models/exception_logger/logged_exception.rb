@@ -55,6 +55,10 @@ module ExceptionLogger
           ] * "\n")
       end
     end
+    
+    def url
+      request.split("\n")[0].gsub("* URL: ", "")
+    end
 
     def controller_action
       @controller_action ||= "#{controller_name.camelcase}/#{action_name}"
