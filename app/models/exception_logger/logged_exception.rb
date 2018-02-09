@@ -57,11 +57,11 @@ module ExceptionLogger
     end
     
     def method
-      request.split("\n")[0].gsub("* URL: ", "").split(" ")[0]
+      request.split("\n")[0].gsub("* URL: ", " ").split(" ")[0]
     end
 
     def url
-      request.split("\n")[0].gsub("* URL: ", "").split(" ")[1]
+      request.split("\n")[0].gsub("* URL: ", " ").split(" ")[1]
     end
     
     def controller_action
