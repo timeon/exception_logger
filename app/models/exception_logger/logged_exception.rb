@@ -4,13 +4,13 @@ module ExceptionLogger
     HOSTNAME = `hostname -s`.chomp
     class << self
       def create_from_exception(controller, exception, data)
-        message = exception.message.inspect.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
+        message = exception.message
         message << "\n* Extra Data\n\n#{data}" unless data.blank?
         e = create! \
           :exception_class => exception.class.name,
           :controller_name => controller.controller_path,
           :action_name     => controller.action_name,
-          :message         => message,
+          :message         => message.inspect.encode('UTF-8', invalid: :replace, undef: :replace, replace: ''),
           :backtrace       => exception.backtrace,
           :request         => controller.request
       end
