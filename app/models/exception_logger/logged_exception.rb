@@ -98,7 +98,8 @@ module ExceptionLogger
     @@backtrace_regex = /^#{Regexp.escape(@@rails_root)}/
 
     def sanitize_backtrace(trace)
-      trace.collect { |line| Pathname.new(line.gsub(@@backtrace_regex, "[RAILS_ROOT]")).cleanpath.to_s }
+      text = trace.collect { |line| Pathname.new(line.gsub(@@backtrace_regex, "[RAILS_ROOT]")).cleanpath.to_s }
+      text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
     end
 
     def rails_root
