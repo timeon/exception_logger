@@ -4,7 +4,7 @@ module ExceptionLogger
     HOSTNAME = `hostname -s`.chomp
     class << self
       def create_from_exception(controller, exception, data)
-        message = exception.message.inspect
+        message = exception.message.inspect.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
         message << "\n* Extra Data\n\n#{data}" unless data.blank?
         e = create! \
           :exception_class => exception.class.name,
@@ -37,10 +37,6 @@ module ExceptionLogger
       trace = trace.truncate(65530)
       write_attribute :backtrace, trace
     end
-
-    def message=(msg)
-      write_attribute :message, msg.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
-    end    
     
     def request=(request)
       if request.is_a?(String)
