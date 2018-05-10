@@ -34,6 +34,7 @@ module ExceptionLogger
 
     def backtrace=(trace)
       trace = sanitize_backtrace(trace) * "\n" unless trace.is_a?(String)
+      trace = trace.truncate(65530)
       write_attribute :backtrace, trace
     end
 
