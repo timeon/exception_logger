@@ -38,6 +38,10 @@ module ExceptionLogger
       write_attribute :backtrace, trace
     end
 
+    def message=(msg)
+      write_attribute :message, msg.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
+    end    
+    
     def request=(request)
       if request.is_a?(String)
         write_attribute :request, request
